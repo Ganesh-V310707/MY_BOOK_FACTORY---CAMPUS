@@ -2,8 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>BOOK FACTORY · premium notebooks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>BOOK FACTORY · Premium Notebooks, Records & Drawing Books</title>
+  <meta name="description" content="Book Factory offers premium campus notebooks, record books, drawing books, and school diaries. Crafted for students, artists, and professionals.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bookfactory.in/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="11.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="11.png">
+  <link rel="apple-touch-icon" href="11.png">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="BOOK FACTORY · Premium Educational Stationery">
+  <meta property="og:description" content="Campus notebooks, records, drawing books & school diaries. Premium quality for students and professionals.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bookfactory.in/">
+  <meta property="og:image" content="https://bookfactory.in/1.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BOOK FACTORY · Premium Educational Stationery">
+  <meta name="twitter:description" content="Campus notebooks, records, drawing books & school diaries. Premium quality.">
+  <meta name="twitter:image" content="https://bookfactory.in/1.png">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Book Factory",
+    "description": "Premium educational stationery including campus notebooks, record books, drawing books, and school diaries.",
+    "url": "https://bookfactory.in/",
+    "logo": "https://bookfactory.in/10.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+919885064929",
+      "contactType": "sales",
+      "email": "vamsi.bookfactory@gmail.com"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "#83-143/2, MRR Estates, Etukur Road",
+      "addressLocality": "Guntur",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+  
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
   <style>
     * {
       margin: 0;
@@ -46,7 +97,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.9rem 2.2rem;
+      padding: 0.7rem 2.2rem;
       margin: 0 auto 2.5rem;
       backdrop-filter: blur(14px) saturate(180%);
       -webkit-backdrop-filter: blur(14px) saturate(180%);
@@ -58,7 +109,21 @@
       transition: all 0.2s;
     }
 
-    .logo {
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .logo-text {
       font-weight: 700;
       font-size: 1.6rem;
       letter-spacing: -0.02em;
@@ -440,6 +505,114 @@
       font-size: 0.9rem;
     }
 
+    /* MODAL / LIGHTBOX */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(20, 20, 28, 0.9);
+      border-radius: 40px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
+      position: relative;
+      animation: scaleIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #d0d0dc;
+      width: 44px;
+      height: 44px;
+      border-radius: 60px;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transform: rotate(90deg);
+    }
+
+    .modal-image-wrap {
+      width: 100%;
+      aspect-ratio: 1/1.1;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #1a1a22;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #ece4d4;
+      margin-bottom: 0.3rem;
+    }
+
+    .modal-category {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9a8f9e;
+      margin-bottom: 1rem;
+    }
+
+    .modal-description {
+      color: #c0b8b0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
     /* animations */
     @keyframes fadeUp {
       0% { opacity: 0; transform: translateY(28px); }
@@ -499,6 +672,19 @@
         min-width: 160px;
         flex: 0 0 160px;
       }
+      .logo-img {
+        height: 32px;
+      }
+      .logo-text {
+        font-size: 1.3rem;
+      }
+      .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      .modal-title {
+        font-size: 1.5rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -516,6 +702,15 @@
         min-width: 140px;
         flex: 0 0 140px;
       }
+      .logo-img {
+        height: 28px;
+      }
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      .modal-content {
+        padding: 1rem;
+      }
     }
 
     .site-wrapper {
@@ -531,102 +726,124 @@
   </style>
 </head>
 <body>
-  <canvas id="canvas-bg"></canvas>
+  <canvas id="canvas-bg" aria-hidden="true"></canvas>
 
   <div class="site-wrapper">
 
-    <!-- NAVBAR -->
-    <nav>
-      <span class="logo">BOOK FACTORY</span>
-      <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#collection">Collection</a>
-        <a href="#slider">Featured</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <h1>BOOK FACTORY</h1>
-      <div class="sub">Campus Note Books · Records · Drawing Books · School Diaries</div>
-      <div class="hero-buttons">
-        <a href="#collection" class="btn">View Collection</a>
-        <a href="#contact" class="btn btn-outline">Contact Us</a>
-      </div>
-    </section>
-
-    <!-- COLLECTION / PRODUCT GRID -->
-    <section id="collection" class="fade-section">
-      <h2 class="section-title">Premium selection</h2>
-      <p class="section-desc">Crafted for campus, studio, and everyday expression.</p>
-      <div class="product-grid" id="productGrid"></div>
-    </section>
-
-    <!-- SLIDER SECTION (books 5-9 repetition + more) -->
-    <section id="slider" class="slider-section fade-section">
-      <h2 class="section-title">Featured editions</h2>
-      <p class="section-desc">Explore our curated collection — each book tells a story.</p>
-      <div class="slider-container" id="sliderContainer">
-        <button class="slider-btn prev" id="sliderPrev">‹</button>
-        <button class="slider-btn next" id="sliderNext">›</button>
-        <div class="slider-track" id="sliderTrack"></div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="about-section fade-section">
-      <h2 class="section-title">About Book Factory</h2>
-      <p>
-        Since our beginning, Book Factory has been dedicated to the craft of premium educational stationery. 
-        We produce school notebooks, record books, drawing pads, and campus diaries that combine durability 
-        with understated elegance. Each product is designed to inspire clarity and creativity — for students, 
-        artists, and professionals who value quality. Our commitment to exceptional materials and timeless 
-        design makes every book a companion for life.
-      </p>
-      <br>
-      <p>
-        From the first sketch to the final stitch, we ensure that every notebook, record, and diary reflects 
-        the care and precision of true craftsmanship. Book Factory isn't just stationery — it's a foundation 
-        for ideas.
-      </p>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact-section fade-section">
-      <h2 class="section-title">Connect</h2>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <strong>Phone</strong>
-          <span>+91 9885064929</span>
+    <!-- HEADER / NAVBAR -->
+    <header>
+      <nav aria-label="Main navigation">
+        <a href="#home" class="logo-container" aria-label="Book Factory Home">
+          <img src="10.png" alt="Book Factory Logo" class="logo-img" width="40" height="40">
+          <span class="logo-text">BOOK FACTORY</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#collection">Collection</a>
+          <a href="#slider">Featured</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div class="contact-item">
-          <strong>Email</strong>
-          <a href="mailto:vamsi.bookfactory@gmail.com">vamsi.bookfactory@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          <strong>Jobs</strong>
-          <a href="mailto:jobs.bookfactory@gmail.com">jobs.bookfactory@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          <strong>Address</strong>
-          <span>#83-143/2, MRR Estates, Etukur Road, Guntur</span>
-        </div>
-      </div>
-    </section>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
 
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- HERO SECTION -->
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <h1 id="hero-title">BOOK FACTORY</h1>
+        <div class="sub">Campus Note Books · Records · Drawing Books · School Diaries</div>
+        <div class="hero-buttons">
+          <a href="#collection" class="btn">View Collection</a>
+          <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+      </section>
+
+      <!-- COLLECTION / PRODUCT GRID -->
+      <section id="collection" class="fade-section" aria-labelledby="collection-title">
+        <h2 id="collection-title" class="section-title">Premium selection</h2>
+        <p class="section-desc">Crafted for campus, studio, and everyday expression.</p>
+        <div class="product-grid" id="productGrid"></div>
+      </section>
+
+      <!-- SLIDER SECTION (books 5-9 repetition + more) -->
+      <section id="slider" class="slider-section fade-section" aria-labelledby="slider-title">
+        <h2 id="slider-title" class="section-title">Featured editions</h2>
+        <p class="section-desc">Explore our curated collection — each book tells a story.</p>
+        <div class="slider-container" id="sliderContainer" role="region" aria-label="Product slider">
+          <button class="slider-btn prev" id="sliderPrev" aria-label="Previous slide">‹</button>
+          <button class="slider-btn next" id="sliderNext" aria-label="Next slide">›</button>
+          <div class="slider-track" id="sliderTrack"></div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="about-section fade-section" aria-labelledby="about-title">
+        <h2 id="about-title" class="section-title">About Book Factory</h2>
+        <p>
+          Since our beginning, Book Factory has been dedicated to the craft of premium educational stationery. 
+          We produce school notebooks, record books, drawing pads, and campus diaries that combine durability 
+          with understated elegance. Each product is designed to inspire clarity and creativity — for students, 
+          artists, and professionals who value quality. Our commitment to exceptional materials and timeless 
+          design makes every book a companion for life.
+        </p>
+        <br>
+        <p>
+          From the first sketch to the final stitch, we ensure that every notebook, record, and diary reflects 
+          the care and precision of true craftsmanship. Book Factory isn't just stationery — it's a foundation 
+          for ideas.
+        </p>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="contact-section fade-section" aria-labelledby="contact-title">
+        <h2 id="contact-title" class="section-title">Connect</h2>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <span>+91 9885064929</span>
+          </div>
+          <div class="contact-item">
+            <strong>Email</strong>
+            <a href="mailto:vamsi.bookfactory@gmail.com">vamsi.bookfactory@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>Jobs</strong>
+            <a href="mailto:jobs.bookfactory@gmail.com">jobs.bookfactory@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>Address</strong>
+            <span>#83-143/2, MRR Estates, Etukur Road, Guntur</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
     <footer>
       <p>BOOK FACTORY · 2026 · educational stationery</p>
     </footer>
   </div>
 
+  <!-- MODAL / LIGHTBOX -->
+  <div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">✕</button>
+      <div class="modal-image-wrap">
+        <img id="modalImage" src="" alt="" loading="lazy">
+      </div>
+      <h2 id="modalTitle" class="modal-title"></h2>
+      <div class="modal-category" id="modalCategory"></div>
+      <p class="modal-description" id="modalDescription"></p>
+    </div>
+  </div>
+
   <script>
     (function() {
-      // ---- CLEAN NEURAL NETWORK BACKGROUND ----
+      // ---- OPTIMIZED NEURAL NETWORK CANVAS (NO LAG) ----
       const canvas = document.getElementById('canvas-bg');
       const ctx = canvas.getContext('2d');
       let w, h;
@@ -644,25 +861,23 @@
         mouseY = e.clientY / h;
       });
 
-      // Nodes with vibrant colors
       const nodes = [];
-      const numNodes = 70;
+      const numNodes = 50;
       for (let i = 0; i < numNodes; i++) {
         nodes.push({
           x: Math.random() * w,
           y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          radius: 2 + Math.random() * 4,
-          hue: 200 + Math.random() * 100, // blue-purple-pink range
+          vx: (Math.random() - 0.5) * 0.2,
+          vy: (Math.random() - 0.5) * 0.2,
+          radius: 1.5 + Math.random() * 3,
+          hue: 200 + Math.random() * 100,
           pulse: Math.random() * 6.28,
-          speed: 0.3 + Math.random() * 0.5,
+          speed: 0.3 + Math.random() * 0.4,
         });
       }
 
-      // Pre-compute connections
       let connections = [];
-      const maxDistRatio = 0.22;
+      const maxDistRatio = 0.2;
 
       function updateConnections() {
         connections = [];
@@ -692,7 +907,6 @@
         frameCount++;
         const time = performance.now() * 0.0003;
 
-        // Dark background with slight gradient
         const bgGrad = ctx.createRadialGradient(
           w * 0.5 + (mouseX - 0.5) * 100, 
           h * 0.5 + (mouseY - 0.5) * 100, 
@@ -709,11 +923,10 @@
         const mx = (mouseX - 0.5) * 2;
         const my = (mouseY - 0.5) * 2;
 
-        // Update nodes
         for (let i = 0; i < nodes.length; i++) {
           const node = nodes[i];
-          node.x += node.vx + mx * 0.08 + Math.sin(node.pulse + time * node.speed) * 0.2;
-          node.y += node.vy + my * 0.08 + Math.cos(node.pulse + time * node.speed * 0.8) * 0.2;
+          node.x += node.vx + mx * 0.06 + Math.sin(node.pulse + time * node.speed) * 0.15;
+          node.y += node.vy + my * 0.06 + Math.cos(node.pulse + time * node.speed * 0.8) * 0.15;
           
           if (node.x < -20) node.x = w + 20;
           if (node.x > w + 20) node.x = -20;
@@ -723,21 +936,18 @@
           node.pulse += 0.01;
         }
 
-        // Update connections periodically
-        if (frameCount % 45 === 0) {
+        if (frameCount % 40 === 0) {
           updateConnections();
         }
 
         hueOffset += 0.0003;
-
-        // Draw connections with gradient colors
         const timeOffset = time * 20;
-        
+
         for (let c = 0; c < connections.length; c++) {
           const conn = connections[c];
           const nodeA = nodes[conn.i];
           const nodeB = nodes[conn.j];
-          const alpha = 0.15 * (1 - conn.dist / conn.maxDist) * (0.6 + 0.4 * Math.sin(time + conn.i * 0.3));
+          const alpha = 0.12 * (1 - conn.dist / conn.maxDist) * (0.6 + 0.4 * Math.sin(time + conn.i * 0.3));
           
           const hue1 = (nodeA.hue + timeOffset + hueOffset * 15) % 360;
           const hue2 = (nodeB.hue + timeOffset + hueOffset * 15 + 30) % 360;
@@ -747,19 +957,18 @@
           ctx.lineTo(nodeB.x, nodeB.y);
           
           const grad = ctx.createLinearGradient(nodeA.x, nodeA.y, nodeB.x, nodeB.y);
-          grad.addColorStop(0, `hsla(${hue1}, 85%, 65%, ${alpha * 0.8})`);
-          grad.addColorStop(0.5, `hsla(${(hue1 + hue2) / 2}, 80%, 70%, ${alpha * 0.6})`);
-          grad.addColorStop(1, `hsla(${hue2}, 85%, 65%, ${alpha * 0.8})`);
+          grad.addColorStop(0, `hsla(${hue1}, 85%, 65%, ${alpha * 0.7})`);
+          grad.addColorStop(0.5, `hsla(${(hue1 + hue2) / 2}, 80%, 70%, ${alpha * 0.5})`);
+          grad.addColorStop(1, `hsla(${hue2}, 85%, 65%, ${alpha * 0.7})`);
           
           ctx.strokeStyle = grad;
-          ctx.lineWidth = 0.6 + alpha * 1.2;
-          ctx.shadowColor = `hsla(${(hue1 + hue2) / 2}, 90%, 70%, ${alpha * 0.2})`;
-          ctx.shadowBlur = 8;
+          ctx.lineWidth = 0.5 + alpha * 1.0;
+          ctx.shadowColor = `hsla(${(hue1 + hue2) / 2}, 90%, 70%, ${alpha * 0.15})`;
+          ctx.shadowBlur = 6;
           ctx.stroke();
         }
 
-        // Draw nodes with glow
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 10;
         for (let i = 0; i < nodes.length; i++) {
           const node = nodes[i];
           const pulse = 0.7 + 0.3 * Math.sin(node.pulse + time * 2);
@@ -767,48 +976,24 @@
           
           const hue = (node.hue + timeOffset + hueOffset * 10) % 360;
           
-          // Outer glow
           const grad = ctx.createRadialGradient(
             node.x, node.y, 0,
-            node.x, node.y, radius * 5
+            node.x, node.y, radius * 4
           );
-          grad.addColorStop(0, `hsla(${hue}, 90%, 75%, 0.25)`);
-          grad.addColorStop(0.3, `hsla(${hue + 20}, 85%, 65%, 0.12)`);
+          grad.addColorStop(0, `hsla(${hue}, 90%, 75%, 0.2)`);
+          grad.addColorStop(0.3, `hsla(${hue + 20}, 85%, 65%, 0.1)`);
           grad.addColorStop(1, `hsla(${hue + 40}, 80%, 55%, 0)`);
           
           ctx.beginPath();
-          ctx.arc(node.x, node.y, radius * 5, 0, Math.PI * 2);
+          ctx.arc(node.x, node.y, radius * 4, 0, Math.PI * 2);
           ctx.fillStyle = grad;
           ctx.fill();
           
-          // Core
           ctx.beginPath();
-          ctx.arc(node.x, node.y, radius * 0.6, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${hue + 10}, 95%, 80%, 0.85)`;
-          ctx.shadowColor = `hsla(${hue}, 90%, 70%, 0.4)`;
-          ctx.shadowBlur = 15;
-          ctx.fill();
-          
-          // Inner bright spot
-          ctx.beginPath();
-          ctx.arc(node.x - radius * 0.15, node.y - radius * 0.15, radius * 0.2, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(0, 0%, 100%, 0.4)`;
-          ctx.shadowBlur = 0;
-          ctx.fill();
-        }
-        ctx.shadowBlur = 0;
-
-        // Subtle floating particles
-        for (let i = 0; i < 12; i++) {
-          const x = (Math.sin(performance.now() * 0.0004 + i * 2.7) * 0.5 + 0.5) * w + (mouseX - 0.5) * 80;
-          const y = (Math.cos(performance.now() * 0.0005 + i * 1.9) * 0.5 + 0.5) * h + (mouseY - 0.5) * 80;
-          const size = 0.5 + Math.sin(performance.now() * 0.002 + i) * 0.3;
-          const hue = (200 + i * 30 + performance.now() * 0.01) % 360;
-          ctx.beginPath();
-          ctx.arc(x, y, size + 0.5, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${hue}, 80%, 70%, 0.04)`;
-          ctx.shadowBlur = 5;
-          ctx.shadowColor = `hsla(${hue}, 80%, 70%, 0.02)`;
+          ctx.arc(node.x, node.y, radius * 0.5, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${hue + 10}, 95%, 80%, 0.8)`;
+          ctx.shadowColor = `hsla(${hue}, 90%, 70%, 0.3)`;
+          ctx.shadowBlur = 12;
           ctx.fill();
         }
         ctx.shadowBlur = 0;
@@ -817,57 +1002,56 @@
       }
       draw();
 
-      // Rebuild connections on resize
       window.addEventListener('resize', () => {
         resize();
         setTimeout(updateConnections, 150);
       });
 
-      // ---- PRODUCT GRID ----
-      const imageMap = [
-        { src: '1.png', title: 'Campus Notebook', cat: 'Notebooks' },
-        { src: '2.png', title: 'Record Book', cat: 'Records' },
-        { src: '3.png', title: 'Drawing Book', cat: 'Drawing' },
-        { src: '4.png', title: 'School Diary', cat: 'Diaries' },
-        { src: '5.png', title: 'Premium Notes', cat: 'Notebooks' },
-        { src: '6.png', title: 'Sketch Pad', cat: 'Drawing' },
-        { src: '7.png', title: 'Project Record', cat: 'Records' },
-        { src: '8.png', title: 'art book', cat: 'Diaries' },
-        { src: '9.png', title: 'notes', cat: 'Drawing' },
+      // ---- PRODUCT DATA ----
+      const productData = [
+        { src: '1.png', title: 'Campus Notebook', cat: 'Notebooks', alt: 'Premium campus notebook with lined pages', desc: 'Perfect for students and professionals. 200 pages of premium quality paper with a durable hardcover finish.' },
+        { src: '2.png', title: 'Record Book', cat: 'Records', alt: 'Hardbound record book for professional use', desc: 'Professional record keeping made elegant. 300 pages with numbered pages and index for easy reference.' },
+        { src: '3.png', title: 'Drawing Book', cat: 'Drawing', alt: 'Sketch drawing book with thick pages', desc: 'Heavyweight 150gsm paper perfect for sketching, drawing, and mixed media. Acid-free and archival quality.' },
+        { src: '4.png', title: 'School Diary', cat: 'Diaries', alt: 'School diary with daily planner', desc: 'Organize your academic year with style. Weekly planner, notes section, and durable binding.' },
+        { src: '5.png', title: 'Premium Notes', cat: 'Notebooks', alt: 'Premium notebook with elegant cover', desc: 'Executive style notebook with leather-like cover. 240 pages of smooth writing paper.' },
+        { src: '6.png', title: 'Sketch Pad', cat: 'Drawing', alt: 'Artists sketch pad for drawing', desc: 'Professional sketch pad for artists. 100 sheets of 200gsm paper, perfect for all dry media.' },
+        { src: '7.png', title: 'Project Record', cat: 'Records', alt: 'Project record book for documentation', desc: 'Comprehensive project documentation with structured pages. Ideal for research and development.' },
+        { src: '8.png', title: 'Student Diary', cat: 'Diaries', alt: 'Student diary with academic planner', desc: 'Student-friendly diary with timetable, assignment tracker, and motivational quotes throughout.' },
+        { src: '9.png', title: 'Art Book', cat: 'Drawing', alt: 'Art book with premium drawing paper', desc: 'Premium art book with 160gsm paper. Suitable for pencil, charcoal, pastels, and light watercolor.' },
       ];
 
+      // ---- PRODUCT GRID ----
       const grid = document.getElementById('productGrid');
-      imageMap.forEach((item) => {
-        const card = document.createElement('div');
+      productData.forEach((item) => {
+        const card = document.createElement('article');
         card.className = 'product-card';
         card.innerHTML = `
-          <div class="img-wrap"><img src="${item.src}" alt="${item.title}" loading="lazy"></div>
+          <div class="img-wrap"><img src="${item.src}" alt="${item.alt}" loading="lazy" width="400" height="440"></div>
           <h3>${item.title}</h3>
           <div class="category">${item.cat}</div>
-          <button class="view-btn">View</button>
+          <button class="view-btn" data-product='${JSON.stringify(item)}' aria-label="View ${item.title}">View</button>
         `;
         grid.appendChild(card);
       });
 
       // ---- SLIDER (books 5-9 repeated + extras) ----
       const sliderImages = [
-        { src: '5.png', title: 'Premium Notes', cat: 'Notebooks' },
-        { src: '6.png', title: 'Sketch Pad', cat: 'Drawing' },
-        { src: '7.png', title: 'Project Record', cat: 'Records' },
-        { src: '8.png', title: 'art book', cat: 'Diaries' },
-        { src: '9.png', title: 'notes', cat: 'Drawing' },
-        { src: '1.png', title: 'Campus Notebook', cat: 'Notebooks' },
-        { src: '2.png', title: 'Record Book', cat: 'Records' },
-        { src: '3.png', title: 'Drawing Book', cat: 'Drawing' },
-        { src: '4.png', title: 'School Diary', cat: 'Diaries' },
-        { src: '5.png', title: 'Premium Notes', cat: 'Notebooks' },
-        { src: '6.png', title: 'Sketch Pad', cat: 'Drawing' },
-        { src: '7.png', title: 'Project Record', cat: 'Records' },
+        { src: '5.png', title: 'Premium Notes', cat: 'Notebooks', alt: 'Premium notebook with elegant cover' },
+        { src: '6.png', title: 'Sketch Pad', cat: 'Drawing', alt: 'Artists sketch pad for drawing' },
+        { src: '7.png', title: 'Project Record', cat: 'Records', alt: 'Project record book for documentation' },
+        { src: '8.png', title: 'Student Diary', cat: 'Diaries', alt: 'Student diary with academic planner' },
+        { src: '9.png', title: 'Art Book', cat: 'Drawing', alt: 'Art book with premium drawing paper' },
+        { src: '1.png', title: 'Campus Notebook', cat: 'Notebooks', alt: 'Premium campus notebook with lined pages' },
+        { src: '2.png', title: 'Record Book', cat: 'Records', alt: 'Hardbound record book for professional use' },
+        { src: '3.png', title: 'Drawing Book', cat: 'Drawing', alt: 'Sketch drawing book with thick pages' },
+        { src: '4.png', title: 'School Diary', cat: 'Diaries', alt: 'School diary with daily planner' },
+        { src: '5.png', title: 'Premium Notes', cat: 'Notebooks', alt: 'Premium notebook with elegant cover' },
+        { src: '6.png', title: 'Sketch Pad', cat: 'Drawing', alt: 'Artists sketch pad for drawing' },
+        { src: '7.png', title: 'Project Record', cat: 'Records', alt: 'Project record book for documentation' },
       ];
 
       const track = document.getElementById('sliderTrack');
       let sliderIndex = 0;
-      let slideWidth = 220;
 
       function buildSlider() {
         track.innerHTML = '';
@@ -875,7 +1059,7 @@
           const card = document.createElement('div');
           card.className = 'slider-card';
           card.innerHTML = `
-            <div class="img-wrap"><img src="${item.src}" alt="${item.title}" loading="lazy"></div>
+            <div class="img-wrap"><img src="${item.src}" alt="${item.alt}" loading="lazy" width="300" height="330"></div>
             <h4>${item.title}</h4>
             <div class="cat">${item.cat}</div>
           `;
@@ -889,7 +1073,6 @@
         const cards = track.querySelectorAll('.slider-card');
         if (cards.length === 0) return;
         const cardWidth = cards[0].offsetWidth + 32;
-        slideWidth = cardWidth;
         const maxIndex = Math.max(0, cards.length - Math.floor(containerWidth / cardWidth));
         if (sliderIndex > maxIndex) sliderIndex = maxIndex;
         if (sliderIndex < 0) sliderIndex = 0;
@@ -912,14 +1095,57 @@
       window.addEventListener('resize', updateSlider);
       buildSlider();
 
+      // ---- MODAL / LIGHTBOX ----
+      const modal = document.getElementById('productModal');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalCategory = document.getElementById('modalCategory');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalClose = document.getElementById('modalClose');
+
+      function openModal(product) {
+        modalImage.src = product.src;
+        modalImage.alt = product.alt;
+        modalTitle.textContent = product.title;
+        modalCategory.textContent = product.cat;
+        modalDescription.textContent = product.desc || 'Premium quality product from Book Factory.';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Event listeners for view buttons (delegation)
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('view-btn')) {
+          const product = JSON.parse(e.target.dataset.product);
+          openModal(product);
+        }
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
       // ---- MOBILE MENU ----
       const toggleBtn = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
       toggleBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
+        const isOpen = navLinks.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', isOpen);
       });
       document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => navLinks.classList.remove('open'));
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
       });
 
       // ---- INTERSECTION OBSERVER ----
@@ -934,7 +1160,7 @@
       faders.forEach(el => observer.observe(el));
 
       // ---- MAGNETIC BUTTONS ----
-      document.querySelectorAll('.btn, .view-btn, .slider-btn').forEach(btn => {
+      document.querySelectorAll('.btn, .view-btn, .slider-btn, .modal-close').forEach(btn => {
         btn.addEventListener('mouseenter', function(e) {
           const rect = this.getBoundingClientRect();
           const x = e.clientX - rect.left - rect.width / 2;
